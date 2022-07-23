@@ -1,1 +1,167 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-sacle=1, maximum-scale=1" >
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+        <div class="head">
+            <i class="el-icon-arrow-left" style="font-size:28px;"></i>
+            <span style="font-size: 20px;">浙江健康码</span>
+            <span style="font-size: 28px;margin-top: -12px; margin-right: 14px;">...</span>
+        </div>
+        <div class="content" id="content">
+            <div class="box-head"></div>
+            <el-card class="box-card">
+                <p style="text-align: center;font-size: 38px;font-weight: 500;margin:0 10px;">{{ nowDate }}</p>
+                <p style="text-align: center;font-size: 58px;font-weight: 500;margin:0">{{ nowTime }}</p>
+                <el-divider class="card-divider"></el-divider>
+                <p>
+                    <span style="font-weight: 500;font-size: 18px;">胡{{ text }}</span>
+                    <el-button v-if="text === '*'" type="text" @click="text = '广'">显示</el-button>
+                    <el-button v-else type="text" @click="text = '*'">隐藏</el-button>
+
+                    <span style="float: right;">
+                        <el-button type="text">修改 <el-divider direction="vertical"></el-divider></el-button>
+                        <el-button type="text" style="margin-left: 0;">代办</el-button>
+                    </span>
+                </p>
+                <img src="assets/WechatIMG116.jpeg" style="width: 100%;">
+                <p class="card-tips">
+                    <i class="el-icon-warning-outline" style="color: #54a96f;margin-right:5px;position: absolute;top: 7px;left: 5px;"></i>
+                    <span v-if="!status" style="padding-left: 22px; overflow: hidden;display: block;text-overflow: ellipsis;white-space: nowrap;">绿码：凭此码可在浙江省范围内通行，请主动出示，配合检查；并做好自身防护工作，码颜色将根据您的申报由当地政府按照相关政策动态更新，出行前请仔细检查您的健康码。</span>
+                    <span v-else style="padding-left: 22px;">绿码：凭此码可在浙江省范围内通行，请主动出示，配合检查；并做好自身防护工作，码颜色将根据您的申报由当地政府按照相关政策动态更新，出行前请仔细检查您的健康码。</span>
+                    <i v-if="!status" class="el-icon-arrow-down" @click="handleDown"></i>
+                    <i v-else class="el-icon-arrow-up" @click="handleUp" style="position: absolute;right: 5px;bottom: 5px;"></i>
+                </p>
+            </el-card>
+        </div>
+        <img src="assets/WechatIMG120.jpeg" style="width: calc(100% - 20px);margin: 0 10px;">
+        <el-card class="first-card">
+            <el-row>
+                <el-col :span="14">
+                    <p style="font-size: 26px;margin-bottom: 0;margin-top: 15px;">最近核酸检测</p>
+                    <p style="font-size: 16px;">{{ nowDate }} 09:54  采样时间</p>
+                </el-col>
+                <el-col :span="10">
+                    <div style="padding: 5px 8px;background: #edf3fd;">
+                        <p style="color: #1b78f3;margin-bottom:0;">距离3天到期还剩</p>
+                        <p style="color: #1b78f3;"><span style="font-size: 28px;font-weight: 500;">67</span>小时<span style="font-size: 28px;font-weight: 500;">13</span>分</p>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-card>
+        <img src="assets/WechatIMG121.jpeg" style="width: calc(100% - 30px);margin: 0px 15px;">
+        <p style="text-align: center;color: #1b78f3;">网络申诉</p>
+        <p style="text-align: center;margin-top: 30px; color: #ccc;">服务热线：0571-12345-6</p>
+        <p style="text-align: center;color: #ccc;">- 本服务由当地人民政府提供 -</p>
+        <p style="text-align: center;font-size: 16px;margin-top: 20px;">中文 / English</p>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui@2.15.8/lib/index.js"></script>
+<script src="script/moment.min.js" ></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        nowDate: '',
+        nowTime: '',
+        timer: null,
+        text: '*',
+        status: false
+      }
+    },
+    created() {
+      this.nowDate = moment().format("MM月DD日")
+      this.nowTime = moment().locale('zh-cn').format('HH:mm:ss');
+      this.init()
+    },
+    beforeDestroy() {
+      clearInterval(this.timer)
+    },
+    methods: {
+      init() {
+        this.timer = setInterval(()=>{
+          this.nowTime = moment().locale('zh-cn').format('HH:mm:ss')
+        },1000)
+      },
+      handleDown() {
+        this.status = true
+        let contentId = document.getElementById("content")
+        contentId.style.height = '820px'
+      },
+      handleUp() {
+        this.status = false
+        let contentId = document.getElementById("content")
+        contentId.style.height = '720px'
+      }
+    }
+  })
+</script>
+<style>
+    #app {
+        height: 100%;
+        overflow-y: auto;
+        position: absolute;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .head{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        height: 40px;
+        width: 100%;
+        z-index: 1001;
+        background: #fff;
+        top: 0;
+        left: 0;
+        padding-top: 10px;
+    }
+    .content{
+        height: 720px;
+        position: relative;
+        margin-top:40px;
+    }
+    .box-head{
+        margin-top:10px;
+        background: #54a96f;
+        position: absolute;
+        height: 250px;
+        width: 100%;
+    }
+    .content .box-card{
+        position: absolute;
+        width: calc(100% - 40px);
+        margin: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    .card-divider{
+        margin-bottom: 0;
+    }
+    .card-tips{
+        background: #f4f7ff;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        position: relative;
+    }
+    .first-card{
+        border-radius: 10px;
+        margin: 10px 15px;
+    }
+    .first-card .el-card__body{
+        padding: 10px;
+    }
+    .footer{
+
+    }
+</style>
+</html>
