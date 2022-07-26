@@ -16,7 +16,7 @@
         <div class="content" id="content">
             <div class="box-head"></div>
             <el-card class="box-card">
-                <p style="text-align: center;font-size: 38px;font-weight: bold;margin:0 10px;">{{ nowDate }}</p>
+                <p style="text-align: center;font-size: 38px;font-weight: bold;margin:-5px 10px;">{{ nowDate }}</p>
                 <p style="text-align: center;font-weight:bold;font-size: 56px;font-weight: bold;margin:0">{{ nowTime }}</p>
                 <el-divider class="card-divider"></el-divider>
                 <p style="margin-top: 5px;margin-bottom: 0;">
@@ -29,7 +29,7 @@
                     </span>
                 </p>
                 <div style="text-align: center;">
-                    <img src="assets/WechatIMG116.jpeg" style="width: 75%;margin-top: -10px;">
+                    <img src="assets/WechatIMG116.jpeg" style="width: 72%;margin-top: -10px;">
                 </div>
                 <p class="card-tips">
                     <i class="el-icon-warning-outline" style="color: #54a96f;margin-right:5px;position: absolute;top: 7px;left: 5px;"></i>
@@ -99,12 +99,12 @@
       handleDown() {
         this.status = true
         let contentId = document.getElementById("content")
-        contentId.style.height = '545px'
+        contentId.style.height = '520px'
       },
       handleUp() {
         this.status = false
         let contentId = document.getElementById("content")
-        contentId.style.height = '490px'
+        contentId.style.height = '465'
       }
     }
   })
@@ -132,7 +132,7 @@
         padding-top: 5px;
     }
     .content{
-        height: 490px;
+        height: 465px;
         position: relative;
         margin-top:40px;
     }
