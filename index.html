@@ -99,12 +99,12 @@
       handleDown() {
         this.status = true
         let contentId = document.getElementById("content")
-        contentId.style.height = '660px'
+        contentId.style.height = '545px'
       },
       handleUp() {
         this.status = false
         let contentId = document.getElementById("content")
-        contentId.style.height = '505px'
+        contentId.style.height = '490px'
       }
     }
   })
@@ -132,7 +132,7 @@
         padding-top: 5px;
     }
     .content{
-        height: 505px;
+        height: 490px;
         position: relative;
         margin-top:40px;
     }
@@ -149,8 +149,12 @@
         border-radius: 10px;
         margin-top: 18px;
     }
+    .first-card{
+        margin-top: 0!important;
+    }
     .box-card .el-card__body{
         padding-top: 5px;
+        padding-bottom: 10px;
     }
     .card-divider{
         margin-bottom: 0;
