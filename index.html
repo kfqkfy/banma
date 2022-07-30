@@ -45,12 +45,12 @@
             <el-row>
                 <el-col :span="14">
                     <p style="font-size: 17px;margin-bottom: 0;margin-top: 5px;">最近核酸检测</p>
-                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate }} 05:54  报告时间</p>
+                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate }} 20:50  报告时间</p>
                 </el-col>
                 <el-col :span="10">
                     <div style="padding: 5px 8px;background: #edf3fd;">
-                        <p style="color: #1b78f3;margin-bottom:0;font-size: 14px; margin-top: 5px;">距离3天到期还剩</p>
-                        <p style="color: #1b78f3; font-size: 14px;margin:0;"><span style="font-size: 24px;font-weight: bold; ">63</span><span style="font-size: 14px;">小时</span><span style="font-size: 24px;font-weight: bold;">13</span><span style="font-size: 14px;">分</span></p>
+                        <p style="color: #1b78f3;margin-bottom:0;font-size: 14px; margin-top: 5px;">距离7天到期还剩</p>
+                        <p style="color: #1b78f3; font-size: 14px;margin:0;"><span style="font-size: 24px;font-weight: bold; ">6</span><span style="font-size: 14px;">天</span><span style="font-size: 24px;font-weight: bold;">10</span><span style="font-size: 14px;">小时</span></p>
                     </div>
                 </el-col>
             </el-row>
@@ -80,9 +80,9 @@
     created() {
       const MDate = moment().format("MM")
       if (Number(MDate) < 10) {
-        this.nowDate = moment().format("M月DD日")
+        this.nowDate = moment().subtract(1, 'day').format("M月DD日")
       } else {
-        this.nowDate = moment().format("MM月DD日")
+        this.nowDate = moment().subtract(1, 'day').format("MM月DD日")
       }
       this.nowTime = moment().locale('zh-cn').format('HH:mm:ss');
       this.init()
