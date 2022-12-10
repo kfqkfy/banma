@@ -47,7 +47,7 @@
                     <p style="font-size: 16px;margin-bottom: 0;margin-top: 5px;">最近核酸检测</p>
                 </el-col>
                 <el-col :span="12">
-                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate }} 17:00  报告时间</p>
+                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate2 }} 17:00  报告时间</p>
                 </el-col>
 <!--                <el-col :span="10">-->
 <!--                    <div style="padding: 5px 8px;background: #edf3fd;">-->
@@ -91,6 +91,7 @@
     data: function() {
       return {
         nowDate: '',
+        nowDate2: '',
         nowTime: '',
         timer: null,
         text: '*',
@@ -98,12 +99,8 @@
       }
     },
     created() {
-      const MDate = moment().format("MM")
-      if (Number(MDate) < 10) {
-        this.nowDate = moment().subtract(2, 'day').format("M月DD日")
-      } else {
-        this.nowDate = moment().subtract(2, 'day').format("MM月DD日")
-      }
+      this.nowDate = moment().subtract(2, 'day').format("M月DD日")
+      this.nowDate2 = moment().subtract(2, 'day').format("M月D日")
       this.nowTime = moment().locale('zh-cn').format('HH:mm:ss');
       this.init()
     },
