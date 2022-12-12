@@ -40,14 +40,14 @@
                 </p>
             </el-card>
         </div>
-        <img src="assets/WechatIMG120.jpeg" style="width: calc(100% - 20px);margin: 0 3px;">
+        <img src="assets/WechatIMG120.jpeg" style="width: calc(100% - 20px);margin: 0 3px;"  @click="toHS">
         <el-card class="first-card">
             <el-row>
                 <el-col :span="12">
                     <p style="font-size: 16px;margin-bottom: 0;margin-top: 5px;">最近核酸检测</p>
                 </el-col>
                 <el-col :span="12">
-                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate2 }} 17:00  报告时间</p>
+                    <p style="font-size: 14px;margin: 0;margin-top: 10px;">{{ nowDate2 }}  报告时间</p>
                 </el-col>
 <!--                <el-col :span="10">-->
 <!--                    <div style="padding: 5px 8px;background: #edf3fd;">-->
@@ -100,7 +100,7 @@
     },
     created() {
       this.nowDate = moment().subtract(2, 'day').format("M月DD日")
-      this.nowDate2 = moment().subtract(3, 'day').format("M月D日")
+      this.nowDate2 = moment().subtract(3, 'hours').format("M月D日 HH:mm")
       this.nowTime = moment().locale('zh-cn').format('HH:mm:ss');
       this.init()
     },
@@ -122,6 +122,10 @@
         this.status = false
         let contentId = document.getElementById("content")
         contentId.style.height = '425px'
+      },
+      toHS() {
+        console.log(window)
+        window.location.href  = "./index2.html"
       }
     }
   })
