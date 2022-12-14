@@ -121,7 +121,7 @@
       }
     },
     created() {
-      this.nowDate = moment().subtract(2, 'day').format("M月DD日")
+      this.nowDate = moment().format("M月DD日")
       this.nowDate2 = moment().subtract(6, 'hours').format("M月D日 HH:mm")
       this.nowTime = moment().locale('zh-cn').format('HH:mm:ss');
       this.init()
